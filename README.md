@@ -26,4 +26,35 @@ This is a simple 4 layers convolutional neural network to classify cracks on a s
 > 
 >    fill_mode='nearest' )
 
+# Model Architecture
 
+```python
+model = Sequential([
+    Input(shape=(img_size, img_size, 1)),
+    
+    # First convolutional block
+    Conv2D(32, (3, 3), activation='relu'),
+    MaxPooling2D((2, 2)),
+    Dropout(0.25),
+    
+    # Second convolutional block
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D((2, 2)),
+    Dropout(0.25),
+    
+    # Third convolutional block
+    Conv2D(128, (3, 3), activation='relu'),
+    MaxPooling2D((2, 2)),
+    Dropout(0.25),
+    
+    # Fourth convolutional block
+    Conv2D(256, (3, 3), activation='relu'),
+    MaxPooling2D((2, 2)),
+    Dropout(0.25),
+    
+    # Fully connected layers
+    Flatten(),
+    Dense(512, activation='relu'),
+    Dropout(0.5),
+    Dense(1, activation='sigmoid')  # Output layer
+])
